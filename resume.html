@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Bhalani - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .resume {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .contact-item i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .resume-body {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+
+        .summary-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-color);
+        }
+
+        .education-item, .experience-item, .project-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .education-item:last-child, .experience-item:last-child, .project-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .item-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            margin-bottom: 8px;
+        }
+
+        .item-date {
+            font-size: 0.85rem;
+            color: var(--gray-color);
+            background-color: #f1f3f5;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .item-content {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            line-height: 1.7;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-category {
+            margin-bottom: 15px;
+        }
+
+        .skill-category-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background-color: #f1f3f5;
+            color: var(--dark-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background-color: rgba(58, 134, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .project-link i {
+            margin-right: 5px;
+            font-size: 0.7rem;
+        }
+
+        .project-link:hover {
+            background-color: rgba(58, 134, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .certification-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .certification-item i {
+            color: var(--success-color);
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .certification-text {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+
+        .languages-list, .hobbies-list {
+            list-style-type: none;
+        }
+
+        .languages-list li, .hobbies-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+
+        .languages-list li i, .hobbies-list li i {
+            margin-right: 8px;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #f1f3f5;
+            border-radius: 20px;
+            margin-top: 5px;
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .resume-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .title {
+                font-size: 1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .resume-body {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .item-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .item-date {
+                align-self: flex-start;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--dark-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .resume {
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode .section {
+            background-color: #2d2d2d;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .item-title,
+        body.dark-mode .skill-category-title,
+        body.dark-mode .section-title {
+            color: #ffffff;
+        }
+
+        body.dark-mode .summary-text,
+        body.dark-mode .item-subtitle,
+        body.dark-mode .item-content,
+        body.dark-mode .certification-text,
+        body.dark-mode .languages-list li,
+        body.dark-mode .hobbies-list li {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .skill-tag {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .progress-container {
+            background-color: #3a3a3a;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            .resume {
+                box-shadow: none;
+                margin: 0;
+            }
+            
+            .theme-toggle {
+                display: none;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle no-print" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="container">
+        <div class="resume">
+            <div class="header">
+                <img src="https://ui-avatars.com/api/?name=Akash+Bhalani&size=200&background=random" alt="Akash Bhalani" class="profile-img">
+                <h1 class="name">Akash Bhalani</h1>
+                <p class="title">Full Stack Web Developer</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Thaltej, Ahmedabad</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>akashbhalani21@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 89802 02753</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/akash-bhalani" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/bhalaniakash" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="resume-body">
+                <div class="sidebar">
+                    <section class="section">
+                        <h2 class="section-title">Skills</h2>
+                        <div class="skills-container">
+                            <div class="skill-category">
+                                <h3 class="skill-category-title">Programming</h3>
+                                <div class="skill-tag">PHP</div>
+                                <div class="skill-tag">JavaScript</div>
+                                <div class="skill-tag">Python</div>
+                                <div class="skill-tag">C</div>
+                                <div class="skill-tag">C++</div>
+                                <div class="skill-tag">SQL</div>
+                            </div>
+                            <div class="skill-category">
+                                <h3 class="skill-category-title">Web Technologies</h3>
+                                <div class="skill-tag">HTML5</div>
+                                <div class="skill-tag">CSS3</div>
+                                <div class="skill-tag">REST APIs</div>
+                                <div class="skill-tag">AJAX</div>
+                            </div>
+                            <div class="skill-category">
+                                <h3 class="skill-category-title">Frameworks</h3>
+                                <div class="skill-tag">Laravel</div>
+                                <div class="skill-tag">Livewire</div>
+                                <div class="skill-tag">Bootstrap</div>
+                                <div class="skill-tag">jQuery</div>
+                                <div class="skill-tag">Node.js</div>
+                                <div class="skill-tag">React.js</div>
+                            </div>
+                            <div class="skill-category">
+                                <h3 class="skill-category-title">Tools</h3>
+                                <div class="skill-tag">Git</div>
+                                <div class="skill-tag">VS Code</div>
+                                <div class="skill-tag">Postman</div>
+                                <div class="skill-tag">XAMPP</div>
+                                <div class="skill-tag">Cursor</div>
+                                <div class="skill-tag">Docker</div>
+                            </div>
+                            <div class="skill-category">
+                                <h3 class="skill-category-title">Databases</h3>
+                                <div class="skill-tag">MySQL</div>
+                                <div class="skill-tag">MongoDB</div>
+                            </div>
+                            <div class="skill-category">
+                                <h3 class="skill-category-title">Concepts</h3>
+                                <div class="skill-tag">OOP</div>
+                                <div class="skill-tag">MVC</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Certifications</h2>
+                        <div class="certification-item">
+                            <i class="fas fa-certificate"></i>
+                            <span class="certification-text">Python Certification - Geekster</span>
+                        </div>
+                        <div class="certification-item">
+                            <i class="fas fa-certificate"></i>
+                            <span class="certification-text">MySQL Certification - Geekster</span>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Languages</h2>
+                        <ul class="languages-list">
+                            <li>
+                                <i class="fas fa-language"></i>
+                                <span>English (Professional Working Proficiency)</span>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-language"></i>
+                                <span>Hindi (Native Fluency)</span>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-language"></i>
+                                <span>Gujarati (Native)</span>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Hobbies & Interests</h2>
+                        <ul class="hobbies-list">
+                            <li><i class="fas fa-camera"></i> Photography & Video Editing</li>
+                            <li><i class="fas fa-plane"></i> Traveling & Exploring New Places</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <div class="main-content">
+                    <section class="section">
+                        <h2 class="section-title">Summary</h2>
+                        <p class="summary-text">
+                            Versatile Full Stack Web Developer with hands-on experience in Laravel, PHP, JavaScript, and MySQL. 
+                            Adept at building responsive web applications with robust backends and modern UI. Skilled in debugging, 
+                            problem-solving, and applying best coding practices. Comfortable working in Agile teams. Also proficient 
+                            in foundational languages like C and C++.
+                        </p>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Education</h2>
+                        <div class="education-item">
+                            <div class="item-header">
+                                <h3 class="item-title">MCA (Master of Computer Applications)</h3>
+                                <span class="item-date">2023 – 2025</span>
+                            </div>
+                            <p class="item-subtitle">CVM University, ISTAR College</p>
+                            <ul class="item-content">
+                                <li>Specialized in Full Stack Development (CGPA: 9.0/10)</li>
+                                <li>Developed academic projects using Laravel and Bootstrap</li>
+                                <li>Coursework in Advanced Algorithms and Database Systems</li>
+                            </ul>
+                        </div>
+                        <div class="education-item">
+                            <div class="item-header">
+                                <h3 class="item-title">BCA (Bachelor of Computer Applications)</h3>
+                                <span class="item-date">2020 – 2023</span>
+                            </div>
+                            <p class="item-subtitle">C.U. Shah College, Saurashtra University</p>
+                            <ul class="item-content">
+                                <li>Focused on programming fundamentals (CGPA: 7.0/10)</li>
+                                <li>Database management and web development coursework</li>
+                            </ul>
+                        </div>
+                        <div class="education-item">
+                            <div class="item-header">
+                                <h3 class="item-title">Higher Secondary (12th Commerce)</h3>
+                                <span class="item-date">2020</span>
+                            </div>
+                            <p class="item-subtitle">N.M. High School</p>
+                            <ul class="item-content">
+                                <li>Scored 63% with focus on business and IT fundamentals</li>
+                            </ul>
+                        </div>
+                        <div class="education-item">
+                            <div class="item-header">
+                                <h3 class="item-title">Secondary (10th)</h3>
+                                <span class="item-date">2018</span>
+                            </div>
+                            <p class="item-subtitle">N.M. High School</p>
+                            <ul class="item-content">
+                                <li>Passed with 63% and strong interest in computers and mathematics</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Experience</h2>
+                        <div class="experience-item">
+                            <div class="item-header">
+                                <h3 class="item-title">Intern - Full Stack Developer</h3>
+                                <span class="item-date">Jan 2025 – Present</span>
+                            </div>
+                            <p class="item-subtitle">Brainer Hub Solution</p>
+                            <ul class="item-content">
+                                <li>Developed web modules using Laravel Breeze, Sanctum, and Livewire</li>
+                                <li>Built RESTful APIs with JWT authentication and documentation</li>
+                                <li>Implemented CI/CD pipelines using GitHub Actions</li>
+                                <li>Collaborated in Agile environment with Git version control</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <h2 class="section-title">Projects</h2>
+                        <div class="project-item">
+                            <div class="item-header">
+                                <h3 class="item-title">WalletWise - Expense Tracker</h3>
+                            </div>
+                            <p class="item-content">
+                                A Laravel-based platform to help users manage income, expenses, and savings goals.
+                            </p>
+                            <ul class="item-content">
+                                <li>Replaces manual budgeting by offering visual analytics and reminders</li>
+                                <li>Role-based user management with secure authentication</li>
+                                <li>Built using Laravel 12.1, MySQL, Bootstrap 5</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/bhalaniakash/walletwise" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="item-header">
+                                <h3 class="item-title">Real-Time Chat Application</h3>
+                            </div>
+                            <p class="item-content">
+                                Simple web chat app designed for lightweight communication and easy file sharing.
+                            </p>
+                            <ul class="item-content">
+                                <li>Replaces heavy chat clients with minimalist real-time messaging</li>
+                                <li>Developed with JavaScript and real-time database services</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/bhalaniakash/chat_application" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="item-header">
+                                <h3 class="item-title">Tic Tac Toe Game - Laravel</h3>
+                            </div>
+                            <p class="item-content">
+                                Interactive two-player game created using Laravel MVC framework.
+                            </p>
+                            <ul class="item-content">
+                                <li>Showcases routing, session handling, and Blade templating</li>
+                                <li>Clean UI with logic to prevent invalid moves</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/bhalaniakash/tic-tac-toe" class="project-link" target="_blank">
+                                    <i class="fab fa-github"></i> View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved user preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+        
+        // Animation on scroll
+        const sections = document.querySelectorAll('.section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Print button functionality
+        const printButton = document.createElement('button');
+        printButton.innerHTML = '<i class="fas fa-print"></i> Print Resume';
+        printButton.style.position = 'fixed';
+        printButton.style.bottom = '20px';
+        printButton.style.right = '20px';
+        printButton.style.zIndex = '100';
+        printButton.style.padding = '10px 15px';
+        printButton.style.backgroundColor = 'var(--primary-color)';
+        printButton.style.color = 'white';
+        printButton.style.border = 'none';
+        printButton.style.borderRadius = '5px';
+        printButton.style.cursor = 'pointer';
+        printButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+        printButton.style.transition = 'var(--transition)';
+        printButton.className = 'no-print';
+        
+        printButton.addEventListener('mouseenter', () => {
+            printButton.style.transform = 'translateY(-3px)';
+            printButton.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3)';
+        });
+        
+        printButton.addEventListener('mouseleave', () => {
+            printButton.style.transform = 'translateY(0)';
+            printButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+        });
+        
+        printButton.addEventListener('click', () => {
+            window.print();
+        });
+        
+        document.body.appendChild(printButton);
+    </script>
+</body>
+</html>

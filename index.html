@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akash Bhalani - Full Stack Developer Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-scroll-container>
+  <header>
+    <nav>
+      <h1>Akash Bhalani</h1>
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul id="nav-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="resume.html" class="btn btn-secondary" target="_blank">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div id="particles-js"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-greeting">
+          <span class="wave">👋</span>
+          <h2>Hi, I'm <span class="highlight">Akash Bhalani</span></h2>
+        </div>
+        <p class="subtitle">Full Stack Web Developer</p>
+        <p class="description">I build <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/bhalaniakash" target="_blank" class="social-link">
+            <i class="fab fa-github"></i>
+            <span class="tooltip">GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/akash-bhalani/" target="_blank" class="social-link">
+            <i class="fab fa-linkedin"></i>
+            <span class="tooltip">LinkedIn</span>
+          </a>
+          <a href="https://x.com/Akashsoni_30" target="_blank" class="social-link">
+            <i class="fab fa-twitter"></i>
+            <span class="tooltip">Twitter</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="image-wrapper">
+          <div class="image-border"></div>
+          <img src="img/akash.jpg" alt="Akash Bhalani">
+          <div class="image-overlay">
+            <div class="overlay-content">
+              <span>Full Stack Developer</span>
+              <span>Laravel Specialist</span>
+              <span>Problem Solver</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="arrow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>I'm a passionate Full Stack Developer with hands-on experience in Laravel, PHP, JavaScript, and MySQL. I specialize in building responsive web applications with robust backends and modern UI.</p>
+        <p>My journey in web development started during my MCA studies, and I've been hooked ever since. I love solving complex problems and creating elegant solutions that make a difference.</p>
+        <div class="interests">
+          <h3>Personal Interests</h3>
+          <div class="interests-grid">
+            <div class="interest-item"><i class="fas fa-camera"></i><span>Photography</span></div>
+            <div class="interest-item"><i class="fas fa-video"></i><span>Video Editing</span></div>
+            <div class="interest-item"><i class="fas fa-plane"></i><span>Traveling</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="experience">
+        <h3>Experience</h3>
+        <div class="exp-item">
+          <h4>Brainer Hub Solution</h4>
+          <p class="position">Intern - Full Stack Developer • Jan 2025 - Present</p>
+          <ul class="responsibilities">
+            <li>Developed web modules using Laravel Breeze, Sanctum, and Livewire</li>
+            <li>Built RESTful APIs with JWT authentication and documentation</li>
+            <li>Implemented CI/CD pipelines using GitHub Actions</li>
+            <li>Collaborated in Agile environment with Git version control</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="personal-details">
+    <h2 class="section-title">Personal Details</h2>
+    <div class="details-grid">
+      <div class="detail-item" data-aos="fade-up">
+        <i class="fas fa-user"></i>
+        <span>Name</span>
+        <p>Akash Bhalani</p>
+      </div>
+      <div class="detail-item" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-birthday-cake"></i>
+        <span>Age</span>
+        <p>22 Years</p>
+      </div>
+      <div class="detail-item" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-phone"></i>
+        <span>Phone</span>
+        <p>+91 8980202753</p>
+      </div>
+      <div class="detail-item" data-aos="fade-up" data-aos-delay="300">
+        <i class="fas fa-envelope"></i>
+        <span>Email</span>
+        <p>akashbhalani21@gmail.com</p>
+      </div>
+      <div class="detail-item" data-aos="fade-up" data-aos-delay="400">
+        <i class="fas fa-calendar"></i>
+        <span>Date of Birth</span>
+        <p>30 April 2003</p>
+      </div>
+      <div class="detail-item" data-aos="fade-up" data-aos-delay="500">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Degree</span>
+        <p>MCA</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">My Skills</h2>
+    <div class="skills-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="frontend">Frontend</button>
+      <button class="filter-btn" data-filter="backend">Backend</button>
+      <button class="filter-btn" data-filter="database">Database</button>
+      <button class="filter-btn" data-filter="languages">Languages</button>
+    </div>
+    <div class="skills-container">
+      <div class="skill-category" data-category="frontend">
+        <h3>Frontend</h3>
+        <div class="skill-item">
+          <span>HTML/CSS/JavaScript</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="90%"></div>
+          </div>
+          <span class="skill-level-text">Advanced</span>
+        </div>
+        <div class="skill-item">
+          <span>React</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="70%"></div>
+          </div>
+          <span class="skill-level-text">Intermediate</span>
+        </div>
+        <div class="skill-item">
+          <span>Bootstrap</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="90%"></div>
+          </div>
+          <span class="skill-level-text">Advanced</span>
+        </div>
+        <div class="skill-item">
+          <span>jQuery</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="70%"></div>
+          </div>
+          <span class="skill-level-text">Intermediate</span>
+        </div>
+      </div>
+      <div class="skill-category" data-category="backend">
+        <h3>Backend</h3>
+        <div class="skill-item">
+          <span>PHP</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="90%"></div>
+          </div>
+          <span class="skill-level-text">Advanced</span>
+        </div>
+        <div class="skill-item">
+          <span>Laravel</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="80%"></div>
+          </div>
+          <span class="skill-level-text">Advanced</span>
+        </div>
+        <div class="skill-item">
+          <span>Node.js</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="70%"></div>
+          </div>
+          <span class="skill-level-text">Intermediate</span>
+        </div>
+        <div class="skill-item">
+          <span>Livewire</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="70%"></div>
+          </div>
+          <span class="skill-level-text">Intermediate</span>
+        </div>
+      </div>
+      <div class="skill-category" data-category="database">
+        <h3>Database</h3>
+        <div class="skill-item">
+          <span>MySQL</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="80%"></div>
+          </div>
+          <span class="skill-level-text">Advanced</span>
+        </div>
+        <div class="skill-item">
+          <span>MongoDB</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="70%"></div>
+          </div>
+          <span class="skill-level-text">Intermediate</span>
+        </div>
+      </div>
+      <div class="skill-category" data-category="languages">
+        <h3>Programming Languages</h3>
+        <div class="skill-item">
+          <span>Python</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="70%"></div>
+          </div>
+          <span class="skill-level-text">Intermediate</span>
+        </div>
+        <div class="skill-item">
+          <span>C/C++</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="70%"></div>
+          </div>
+          <span class="skill-level-text">Intermediate</span>
+        </div>
+      </div>
+      <div class="skill-category" data-category="tools">
+        <h3>Development Tools</h3>
+        <div class="skill-item">
+          <span>Git & GitHub</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="90%"></div>
+          </div>
+          <span class="skill-level-text">Advanced</span>
+        </div>
+        <div class="skill-item">
+          <span>VS Code</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="90%"></div>
+          </div>
+          <span class="skill-level-text">Advanced</span>
+        </div>
+        <div class="skill-item">
+          <span>XAMPP</span>
+          <div class="skill-bar">
+            <div class="skill-level" data-level="90%"></div>
+          </div>
+          <span class="skill-level-text">Advanced</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <h2 class="section-title">Certifications</h2>
+    <div class="certificates-grid">
+      <div class="certificate" data-aos="fade-up">
+        <div class="certificate-image">
+          <img src="img/SQL.png" alt="SQL Certification">
+        </div>
+        <div class="certificate-content">
+          <h3>SQL Certification Course</h3>
+          <p>Basic to Advanced SQL training covering database design, queries, and optimization</p>
+          <div class="certificate-details">
+            <span class="issuer">Geekster</span>
+            <span class="date">2023</span>
+          </div>
+          <a href="#" class="btn">View Certificate</a>
+        </div>
+      </div>
+      <div class="certificate" data-aos="fade-up">
+        <div class="certificate-image">
+          <img src="img/python.png" alt="Python Certification">
+        </div>
+        <div class="certificate-content">
+          <h3>Python Certification</h3>
+          <p>Comprehensive Python course covering fundamentals to advanced concepts</p>
+          <div class="certificate-details">
+            <span class="issuer">Geekster</span>
+            <span class="date">2023</span>
+          </div>
+          <a href="#" class="btn">View Certificate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      <div class="project" data-aos="fade-up">
+        <div class="project-image">
+          <img src="https://via.placeholder.com/600x400?text=WalletWise" alt="WalletWise">
+        </div>
+        <div class="project-content">
+          <h3>WalletWise - Expense Tracker</h3>
+          <p>A Laravel-based platform to help users manage income, expenses, and savings goals with visual analytics and reminders.</p>
+          <div class="project-tech">
+            <span>Laravel</span>
+            <span>MySQL</span>
+            <span>Bootstrap</span>
+            <span>JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/bhalaniakash/walletwise" class="btn" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project" data-aos="fade-up">
+        <div class="project-image">
+          <img src="https://via.placeholder.com/600x400?text=Chat+App" alt="Real-Time Chat Application">
+        </div>
+        <div class="project-content">
+          <h3>Real-Time Chat Application</h3>
+          <p>Simple web chat app designed for lightweight communication and easy file sharing with real-time messaging.</p>
+          <div class="project-tech">
+            <span>JavaScript</span>
+            <span>Firebase</span>
+            <span>HTML/CSS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/bhalaniakash/Chat_Application" class="btn" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project" data-aos="fade-up">
+        <div class="project-image">
+          <img src="https://via.placeholder.com/600x400?text=Tic+Tac+Toe" alt="Tic Tac Toe Game">
+        </div>
+        <div class="project-content">
+          <h3>Tic Tac Toe Game - Laravel</h3>
+          <p>Interactive two-player game created using Laravel MVC framework showcasing routing, session handling, and Blade templating.</p>
+          <div class="project-tech">
+            <span>Laravel</span>
+            <span>PHP</span>
+            <span>Bootstrap</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/bhalaniakash/tic-tac-toe" class="btn" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:akashbhalani21@gmail.com">akashbhalani21@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+918980202753">+91 8980202753</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <div>
+            <h4>LinkedIn</h4>
+            <a href="https://linkedin.com/in/akash-bhalani" target="_blank">akash-bhalani</a>
+          </div>
+        </div>
+      </div>
+      <form id="contactForm" action="https://formspree.io/f/mldnlylp" method="POST" class="contact-form">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Your Email" required>
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder="Your Message" required></textarea>
+          <span class="error-message"></span>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="location">
+    <h2 class="section-title">Find Me Here</h2>
+    <div class="location-container">
+      <div class="location-info">
+        <div class="address-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>My Location</h3>
+          <p>Bhaikaka Nagar, Thaltej</p>
+          <p>Ahmedabad, Gujarat, India</p>
+        </div>
+      </div>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.626672814614!2d72.51180331496754!3d23.03849658494106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84f5e8b8f7b7%3A0x5e0b0b0b0b0b0b0b!2sBhaikaka%20Nagar%2C%20Thaltej%2C%20Ahmedabad%2C%20Gujarat%20380059%2C%20India!5e0!3m2!1sen!2sus!4v1634567890123!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 Akash Bhalani. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
