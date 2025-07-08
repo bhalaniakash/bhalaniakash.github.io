@@ -29,80 +29,96 @@ AOS.init({
 
 // Theme Toggle
 const themeToggle = document.getElementById('theme-toggle');
+const themeToggleMobile = document.getElementById('theme-toggle-mobile');
 const body = document.body;
 let currentTheme = localStorage.getItem('theme') || 'dark';
 
 // Set initial theme
 document.documentElement.setAttribute('data-theme', currentTheme);
 body.setAttribute('data-theme', currentTheme);
-if (themeToggle) {
-  themeToggle.innerHTML = currentTheme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+
+// Update both buttons
+function updateThemeButtons() {
+  const icon = currentTheme === 'light' ? '<i class="fas fa-moon text-white text-sm"></i>' : '<i class="fas fa-sun text-white text-sm"></i>';
+  if (themeToggle) themeToggle.innerHTML = icon;
+  if (themeToggleMobile) themeToggleMobile.innerHTML = icon;
 }
 
+// Initialize theme buttons
+updateThemeButtons();
+
+// Theme toggle function
+function toggleTheme() {
+  currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+  body.setAttribute('data-theme', currentTheme);
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  localStorage.setItem('theme', currentTheme);
+  updateThemeButtons();
+}
+
+// Add event listeners to both theme toggle buttons
 if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-    body.setAttribute('data-theme', currentTheme);
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    localStorage.setItem('theme', currentTheme);
-    themeToggle.innerHTML = currentTheme === 'light' ? 
-      '<i class="fas fa-moon"></i>' : 
-      '<i class="fas fa-sun"></i>';
-  });
+  themeToggle.addEventListener('click', toggleTheme);
+}
+
+if (themeToggleMobile) {
+  themeToggleMobile.addEventListener('click', toggleTheme);
 }
 
 // Enhanced Mobile Menu with GSAP
 const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-const navLinks = document.querySelectorAll('#nav-menu a');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
 
-if (hamburger && navMenu) {
+if (hamburger && mobileMenu) {
   // Enhanced mobile menu animation
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    
-    if (navMenu.classList.contains('active')) {
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  
+    if (mobileMenu.classList.contains('active')) {
       // Close animation
-      gsap.to(navLinks, {
+      gsap.to(mobileMenu, {
         opacity: 0,
         y: -20,
         duration: 0.3,
-        stagger: 0.1,
         ease: "power2.in",
         onComplete: () => {
-          navMenu.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          mobileMenu.style.pointerEvents = 'none';
+          mobileMenu.style.transform = 'translateY(-100%)';
         }
       });
     } else {
       // Open animation
-      navMenu.classList.add('active');
-      gsap.fromTo(navLinks, 
-        { opacity: 0, y: 20 },
+      mobileMenu.classList.add('active');
+      mobileMenu.style.pointerEvents = 'auto';
+      mobileMenu.style.transform = 'translateY(0)';
+      gsap.fromTo(mobileMenu, 
+        { opacity: 0, y: -20 },
         {
           opacity: 1,
           y: 0,
           duration: 0.4,
-          stagger: 0.1,
-          ease: "power2.out",
-          delay: 0.1
+          ease: "power2.out"
         }
       );
     }
   });
 
   // Close mobile menu when clicking on a link
-  navLinks.forEach(link => {
+  mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if (navMenu.classList.contains('active')) {
+      if (mobileMenu.classList.contains('active')) {
         hamburger.classList.remove('active');
-        gsap.to(navLinks, {
+        gsap.to(mobileMenu, {
           opacity: 0,
           y: -20,
           duration: 0.3,
-          stagger: 0.05,
           ease: "power2.in",
           onComplete: () => {
-            navMenu.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileMenu.style.pointerEvents = 'none';
+            mobileMenu.style.transform = 'translateY(-100%)';
           }
         });
       }
@@ -248,34 +264,34 @@ function enhancedTypingEffect() {
   const typingDelay = 80;
   const erasingDelay = 40;
   const newTextDelay = 1500;
-  let textArrayIndex = 0;
-  let charIndex = 0;
+let textArrayIndex = 0;
+let charIndex = 0;
 
-  function type() {
-    if (charIndex < textArray[textArrayIndex].length) {
+function type() {
+  if (charIndex < textArray[textArrayIndex].length) {
       if (!cursorSpan.classList.contains("typing")) {
         cursorSpan.classList.add("typing");
       }
-      typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-      charIndex++;
+    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+    charIndex++;
       setTimeout(type, typingDelay);
-    } else {
+  } else {
       cursorSpan.classList.remove("typing");
       setTimeout(erase, newTextDelay);
-    }
   }
+}
 
-  function erase() {
-    if (charIndex > 0) {
+function erase() {
+  if (charIndex > 0) {
       if (!cursorSpan.classList.contains("typing")) {
         cursorSpan.classList.add("typing");
       }
       typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
-      charIndex--;
+    charIndex--;
       setTimeout(erase, erasingDelay);
-    } else {
+  } else {
       cursorSpan.classList.remove("typing");
-      textArrayIndex++;
+    textArrayIndex++;
       if (textArrayIndex >= textArray.length) textArrayIndex = 0;
       setTimeout(type, typingDelay + 1100);
     }
@@ -365,21 +381,21 @@ function initParticles() {
   if (typeof particlesJS !== 'undefined') {
     particlesJS('particles-js', {
       particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: "#4f46e5" },
+        number: { value: 100, density: { enable: true, value_area: 1000 } },
+        color: { value: "#aa48ec" },
         shape: { type: "circle" },
         opacity: { value: 0.5, random: false },
-        size: { value: 3, random: true },
+        size: { value: 4, random: true },
         line_linked: {
           enable: true,
-          distance: 150,
-          color: "#4f46e5",
-          opacity: 0.4,
-          width: 1
+          distance: 100,
+          color: "#aa48ec",
+          opacity: 1,
+          width: 0.5
         },
         move: {
           enable: true,
-          speed: 6,
+          speed: 5,
           direction: "none",
           random: false,
           straight: false,
@@ -399,6 +415,8 @@ function initParticles() {
     });
   }
 }
+
+// just joke
 
 // Enhanced page load animation
 window.addEventListener('load', function() {
@@ -515,10 +533,10 @@ document.addEventListener('DOMContentLoaded', () => {
           behavior: 'smooth',
           block: 'start'
         });
-      }
-    });
+    }
   });
-  
+});
+
   // Ensure external links work properly
   document.querySelectorAll('a[href^="http"], a[href^="https"], a[target="_blank"]').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -526,6 +544,754 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
     });
   });
-
+  
   ensureExternalLinksWork();
 });
+
+// Zigzag Scroll Path Animation
+function initZigzagScrollPath() {
+  const scrollDot = document.querySelector('.scroll-dot');
+  const scrollPath = document.querySelector('.scroll-path');
+  
+  if (!scrollDot || !scrollPath) return;
+  
+  let ticking = false;
+  
+  function updateScrollDot() {
+    const scrollProgress = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+    const pathLength = scrollPath.getTotalLength();
+    const currentLength = pathLength * scrollProgress;
+    
+    // Get point on path
+    const point = scrollPath.getPointAtLength(currentLength);
+    
+    // Update dot position with smooth animation
+    gsap.to(scrollDot, {
+      duration: 0.3,
+      x: point.x - 8, // Center the dot
+      y: point.y - 8,
+      rotation: scrollProgress * 360,
+      ease: "power2.out"
+    });
+    
+    // Add pulsing effect when scrolling
+    scrollDot.style.animation = 'pulse-glow 1s ease-out';
+    setTimeout(() => {
+      scrollDot.style.animation = '';
+    }, 1000);
+    
+    ticking = false;
+  }
+  
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(updateScrollDot);
+      ticking = true;
+    }
+  }
+  
+  // Throttled scroll listener
+  window.addEventListener('scroll', onScroll);
+  
+  // Initial position
+  updateScrollDot();
+}
+
+// Enhanced Section Animations with Intersection Observer
+function initAdvancedAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -10% 0px'
+  };
+  
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const section = entry.target;
+        const elements = section.querySelectorAll('.animate-on-scroll');
+        
+        // Staggered animation for elements within the section
+        gsap.fromTo(elements, 
+          { 
+            opacity: 0, 
+            y: 50,
+            scale: 0.9
+          },
+          { 
+            opacity: 1, 
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power3.out"
+          }
+        );
+        
+        // Add special effects for specific sections
+        if (section.id === 'skills') {
+          initSkillBarsAnimation();
+        }
+        
+        if (section.id === 'projects') {
+          animateProjectCards();
+        }
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all sections
+  document.querySelectorAll('section').forEach(section => {
+    sectionObserver.observe(section);
+  });
+}
+
+// Enhanced Skill Bars Animation
+function initSkillBarsAnimation() {
+  const skillBars = document.querySelectorAll('.skill-level');
+  
+  skillBars.forEach((bar, index) => {
+    const level = bar.getAttribute('data-level');
+    
+    gsap.fromTo(bar, 
+      { width: '0%' },
+      { 
+        width: level,
+        duration: 1.5,
+        delay: index * 0.1,
+        ease: "power3.out",
+        onComplete: () => {
+          // Add shimmer effect
+          bar.style.animation = 'shimmer 2s ease-in-out';
+        }
+      }
+    );
+  });
+}
+
+// Project Cards Animation
+function animateProjectCards() {
+  const cards = document.querySelectorAll('.project, .certificate');
+  
+  cards.forEach((card, index) => {
+    gsap.fromTo(card,
+      {
+        opacity: 0,
+        y: 100,
+        rotationX: -15,
+        scale: 0.8
+      },
+      {
+        opacity: 1,
+        y: 0,
+        rotationX: 0,
+        scale: 1,
+        duration: 0.8,
+        delay: index * 0.15,
+        ease: "power3.out"
+      }
+    );
+  });
+}
+
+// Enhanced Parallax Scrolling
+function initParallaxScrolling() {
+  const parallaxElements = document.querySelectorAll('[data-parallax]');
+  
+  if (parallaxElements.length === 0) return;
+  
+  let ticking = false;
+  
+  function updateParallax() {
+    const scrollTop = window.pageYOffset;
+    
+    parallaxElements.forEach(element => {
+      const speed = element.dataset.parallax || 0.5;
+      const yPos = -(scrollTop * speed);
+      
+      gsap.set(element, {
+        transform: `translateY(${yPos}px) translateZ(0)`
+  });
+});
+
+    ticking = false;
+  }
+  
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+  
+  window.addEventListener('scroll', onScroll);
+}
+
+// Smooth Mouse Cursor Following
+function initCustomCursor() {
+  if (window.innerWidth < 1024) return; // Skip on mobile
+  
+  const cursor = document.createElement('div');
+  const follower = document.createElement('div');
+  
+  cursor.className = 'cursor-dot';
+  follower.className = 'cursor-follower';
+  
+  document.body.appendChild(cursor);
+  document.body.appendChild(follower);
+  
+  let mouseX = 0, mouseY = 0;
+  let followerX = 0, followerY = 0;
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    gsap.to(cursor, {
+      x: mouseX,
+      y: mouseY,
+      duration: 0
+    });
+  });
+  
+  // Smooth follower animation
+  function updateFollower() {
+    followerX += (mouseX - followerX) * 0.1;
+    followerY += (mouseY - followerY) * 0.1;
+    
+    gsap.set(follower, {
+      x: followerX,
+      y: followerY
+    });
+    
+    requestAnimationFrame(updateFollower);
+  }
+  
+  updateFollower();
+  
+  // Hover effects
+  const hoverElements = document.querySelectorAll('a, button, .project, .certificate');
+  
+  hoverElements.forEach(element => {
+    element.addEventListener('mouseenter', () => {
+      cursor.classList.add('cursor-hover');
+      follower.classList.add('cursor-hover');
+    });
+    
+    element.addEventListener('mouseleave', () => {
+      cursor.classList.remove('cursor-hover');
+      follower.classList.remove('cursor-hover');
+    });
+  });
+}
+
+// Enhanced Zigzag Scroll Path with Polls
+class EnhancedScrollPath {
+  constructor() {
+    this.scrollContainer = document.querySelector('.scroll-path-container');
+    this.scrollDot = document.querySelector('.scroll-dot');
+    this.scrollPath = document.querySelector('.scroll-path');
+    this.sections = document.querySelectorAll('section');
+    this.sectionPolls = new Map();
+    this.isScrolling = false;
+    this.scrollTimeout = null;
+    
+    if (this.scrollContainer && this.scrollDot) {
+      this.init();
+    }
+  }
+  
+  init() {
+    this.createSectionPolls();
+    this.bindScrollEvents();
+    this.animatePathReveal();
+    
+    // Initial position
+    this.updateDotPosition();
+    this.updateSectionPolls();
+  }
+  
+  createSectionPolls() {
+    if (!this.scrollPath) return;
+    
+    this.sections.forEach((section, index) => {
+      const poll = document.createElement('div');
+      poll.className = 'section-poll';
+      poll.dataset.section = section.id || `section-${index}`;
+      
+      // Calculate position along the path (zigzag pattern)
+      const pathHeight = this.scrollPath.getBoundingClientRect().height;
+      const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(sectionTop / documentHeight, 1);
+      
+      // Zigzag positioning
+      const zigzagOffset = Math.sin(progress * Math.PI * 6) * 15; // 6 curves
+      poll.style.top = `${progress * pathHeight}px`;
+      poll.style.left = `${50 + zigzagOffset}%`;
+      
+      this.scrollPath.appendChild(poll);
+      this.sectionPolls.set(section, poll);
+      
+      // Add click handler for navigation
+      poll.addEventListener('click', () => {
+        this.scrollToSection(section);
+      });
+      
+      // Add hover tooltip
+      const tooltip = document.createElement('div');
+      tooltip.className = 'poll-tooltip';
+      tooltip.textContent = section.querySelector('h2')?.textContent || section.id || `Section ${index + 1}`;
+      poll.appendChild(tooltip);
+    });
+  }
+  
+  bindScrollEvents() {
+    let ticking = false;
+    
+    const updatePosition = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          this.updateDotPosition();
+          this.updateSectionPolls();
+          this.handleScrollingState();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', updatePosition, { passive: true });
+    window.addEventListener('resize', () => {
+      this.repositionSectionPolls();
+      this.updateDotPosition();
+    });
+  }
+  
+  updateDotPosition() {
+    if (!this.scrollDot || !this.scrollPath) return;
+    
+    const scrollTop = window.pageYOffset;
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollProgress = Math.min(scrollTop / documentHeight, 1);
+    
+    const pathHeight = this.scrollPath.getBoundingClientRect().height;
+    const dotPosition = scrollProgress * pathHeight;
+    
+    // Zigzag positioning for the main dot
+    const zigzagOffset = Math.sin(scrollProgress * Math.PI * 6) * 20;
+    
+    this.scrollDot.style.top = `${dotPosition}px`;
+    this.scrollDot.style.left = `${50 + (zigzagOffset * 0.5)}%`;
+    
+    // Add dynamic color based on progress
+    const hue = 220 + (scrollProgress * 60); // Blue to purple range
+    this.scrollDot.style.background = `hsl(${hue}, 80%, 60%)`;
+    this.scrollDot.style.boxShadow = `
+      0 0 20px hsla(${hue}, 80%, 60%, 0.6),
+      0 0 40px hsla(${hue}, 80%, 60%, 0.4),
+      0 0 60px hsla(${hue}, 80%, 60%, 0.3)
+    `;
+  }
+  
+  updateSectionPolls() {
+    const scrollTop = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    
+    this.sectionPolls.forEach((poll, section) => {
+      const sectionRect = section.getBoundingClientRect();
+      const sectionTop = sectionRect.top + scrollTop;
+      const sectionBottom = sectionTop + sectionRect.height;
+      
+      const isActive = scrollTop >= sectionTop - windowHeight * 0.3 && 
+                      scrollTop <= sectionBottom - windowHeight * 0.3;
+      
+      poll.classList.toggle('active', isActive);
+      
+      if (isActive) {
+        // Animate active poll
+        gsap.to(poll, {
+          scale: 1.5,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      } else {
+        gsap.to(poll, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      }
+    });
+  }
+  
+  handleScrollingState() {
+    this.isScrolling = true;
+    this.scrollDot.classList.add('scrolling');
+    
+    clearTimeout(this.scrollTimeout);
+    this.scrollTimeout = setTimeout(() => {
+      this.isScrolling = false;
+      this.scrollDot.classList.remove('scrolling');
+    }, 150);
+  }
+  
+  scrollToSection(section) {
+    const targetTop = section.getBoundingClientRect().top + window.pageYOffset - 80;
+    
+    // Animate the scroll
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: targetTop,
+      ease: "power3.inOut"
+    });
+    
+    // Pulse effect on target poll
+    const poll = this.sectionPolls.get(section);
+    if (poll) {
+      gsap.fromTo(poll, 
+        { scale: 1.5 },
+        { 
+          scale: 2,
+          duration: 0.2,
+          yoyo: true,
+          repeat: 1,
+          ease: "power2.inOut"
+        }
+      );
+    }
+  }
+  
+  repositionSectionPolls() {
+    this.sectionPolls.forEach((poll, section) => {
+      const pathHeight = this.scrollPath.getBoundingClientRect().height;
+      const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(sectionTop / documentHeight, 1);
+      
+      const zigzagOffset = Math.sin(progress * Math.PI * 6) * 15;
+      poll.style.top = `${progress * pathHeight}px`;
+      poll.style.left = `${50 + zigzagOffset}%`;
+    });
+  }
+  
+  animatePathReveal() {
+    if (!this.scrollPath) return;
+    
+    // Animate path drawing
+    gsap.fromTo(this.scrollPath.querySelector('path'), {
+      strokeDasharray: "1000",
+      strokeDashoffset: "1000"
+    }, {
+      strokeDashoffset: "0",
+      duration: 3,
+      ease: "power2.inOut",
+      delay: 2
+    });
+    
+    // Animate container fade in
+    gsap.fromTo(this.scrollContainer, {
+      opacity: 0,
+      x: -30
+    }, {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      ease: "power2.out",
+      delay: 1.5
+    });
+    
+    // Animate dot appearance
+    gsap.fromTo(this.scrollDot, {
+      scale: 0,
+      opacity: 0
+    }, {
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: "back.out(1.7)",
+      delay: 2.5
+    });
+  }
+}
+
+// Advanced Parallax Effects
+class ParallaxManager {
+  constructor() {
+    this.elements = document.querySelectorAll('[data-parallax]');
+    this.init();
+  }
+  
+  init() {
+    if (this.elements.length === 0) return;
+    
+    this.elements.forEach(element => {
+      const speed = parseFloat(element.dataset.parallax) || 0.5;
+      
+      gsap.registerPlugin(ScrollTrigger);
+      
+      gsap.to(element, {
+        yPercent: -50 * speed,
+        ease: "none",
+        scrollTrigger: {
+          trigger: element,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    });
+  }
+}
+
+// Enhanced Custom Cursor
+class EnhancedCursor {
+  constructor() {
+    this.cursor = null;
+    this.follower = null;
+    this.isDesktop = window.innerWidth >= 1024;
+    
+    if (this.isDesktop && !('ontouchstart' in window)) {
+      this.init();
+    }
+  }
+  
+  init() {
+    this.createCursor();
+    this.bindEvents();
+  }
+  
+  createCursor() {
+    this.cursor = document.createElement('div');
+    this.cursor.className = 'custom-cursor';
+    document.body.appendChild(this.cursor);
+    
+    this.follower = document.createElement('div');
+    this.follower.className = 'custom-cursor-follower';
+    this.follower.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      background: rgba(79, 70, 229, 0.1);
+      border: 2px solid rgba(79, 70, 229, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.3s ease;
+      opacity: 0;
+    `;
+    document.body.appendChild(this.follower);
+  }
+  
+  bindEvents() {
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      this.cursor.style.left = mouseX + 'px';
+      this.cursor.style.top = mouseY + 'px';
+      this.cursor.classList.add('active');
+      this.follower.style.opacity = '1';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+      this.cursor.classList.add('active');
+      this.follower.style.opacity = '1';
+    });
+    
+    document.addEventListener('mouseleave', () => {
+      this.cursor.classList.remove('active');
+      this.follower.style.opacity = '0';
+    });
+    
+    // Smooth follower animation
+    const animate = () => {
+      followerX += (mouseX - followerX) * 0.1;
+      followerY += (mouseY - followerY) * 0.1;
+      
+      this.follower.style.left = followerX + 'px';
+      this.follower.style.top = followerY + 'px';
+      
+      requestAnimationFrame(animate);
+    };
+    animate();
+    
+    // Interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, [data-cursor="pointer"]');
+    interactiveElements.forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        this.cursor.classList.add('hover');
+        this.follower.style.transform = 'scale(1.5)';
+      });
+      
+      element.addEventListener('mouseleave', () => {
+        this.cursor.classList.remove('hover');
+        this.follower.style.transform = 'scale(1)';
+      });
+    });
+  }
+}
+
+// Performance Monitor
+class PerformanceMonitor {
+  constructor() {
+    this.fps = 0;
+    this.lastTime = performance.now();
+    this.frameCount = 0;
+    this.isMonitoring = false;
+    
+    if (window.location.search.includes('debug=true')) {
+      this.startMonitoring();
+    }
+  }
+  
+  startMonitoring() {
+    this.isMonitoring = true;
+    this.createUI();
+    this.monitor();
+  }
+  
+  createUI() {
+    const monitor = document.createElement('div');
+    monitor.id = 'performance-monitor';
+    monitor.style.cssText = `
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 12px;
+      z-index: 10000;
+    `;
+    document.body.appendChild(monitor);
+  }
+  
+  monitor() {
+    if (!this.isMonitoring) return;
+    
+    const now = performance.now();
+    this.frameCount++;
+    
+    if (now >= this.lastTime + 1000) {
+      this.fps = Math.round((this.frameCount * 1000) / (now - this.lastTime));
+      this.frameCount = 0;
+      this.lastTime = now;
+      
+      const monitor = document.getElementById('performance-monitor');
+      if (monitor) {
+        monitor.innerHTML = `
+          FPS: ${this.fps}<br>
+          Memory: ${this.getMemoryUsage()}<br>
+          Scroll: ${Math.round(window.pageYOffset)}px
+        `;
+      }
+    }
+    
+    requestAnimationFrame(() => this.monitor());
+  }
+  
+  getMemoryUsage() {
+    if ('memory' in performance) {
+      const memory = performance.memory;
+      return `${Math.round(memory.usedJSHeapSize / 1048576)}MB`;
+    }
+    return 'N/A';
+  }
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize enhanced scroll path
+  const scrollPath = new EnhancedScrollPath();
+  
+  // Initialize parallax effects
+  const parallax = new ParallaxManager();
+  
+  // Initialize enhanced cursor
+  const cursor = new EnhancedCursor();
+  
+  // Initialize performance monitor
+  const monitor = new PerformanceMonitor();
+  
+  // Enhanced scroll animations with Intersection Observer
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        
+        // Trigger GSAP animations for specific elements
+        if (entry.target.classList.contains('skill-category')) {
+          const skillBars = entry.target.querySelectorAll('.skill-level');
+          skillBars.forEach((bar, index) => {
+            const level = bar.getAttribute('data-level');
+            gsap.to(bar, {
+              width: level,
+              duration: 1.2,
+              delay: index * 0.1,
+              ease: "power2.out"
+            });
+          });
+        }
+      }
+    });
+  }, observerOptions);
+  
+  // Observe elements for animations
+  document.querySelectorAll('.skill-category, .project, .certificate, .detail-item').forEach(el => {
+    observer.observe(el);
+  });
+  
+  // Enhanced mobile performance
+  if (window.innerWidth <= 768) {
+    // Reduce animation complexity on mobile
+    document.documentElement.style.setProperty('--transition', 'all 0.2s ease');
+    document.documentElement.style.setProperty('--transition-slow', 'all 0.4s ease');
+  }
+});
+
+console.log('Enhanced portfolio loaded successfully! 🚀');
+
+// --- Mouse-based movement for scroll path and dot ---
+const scrollPathContainer = document.querySelector('.scroll-path-container');
+const scrollDot = document.querySelector('.scroll-dot');
+const zigzagPath = document.querySelector('.scroll-path path');
+
+if (scrollPathContainer && scrollDot && zigzagPath) {
+  scrollPathContainer.addEventListener('mousemove', (e) => {
+    const rect = scrollPathContainer.getBoundingClientRect();
+    const mouseY = e.clientY - rect.top;
+    // Move the dot vertically (clamp to container)
+    scrollDot.style.top = `${Math.max(0, Math.min(rect.height, mouseY))}px`;
+
+    // Parallax/morph the zigzag path based on mouse X
+    const mouseX = e.clientX - rect.left;
+    // Calculate a small offset for the zigzag amplitude
+    const amplitude = 30 + (mouseX / rect.width) * 40; // 30-70
+    // Build a new zigzag path with this amplitude
+    let d = `M50,0 `;
+    for (let y = 40; y <= 1000; y += 40) {
+      const x = (y / 40) % 2 === 0 ? 50 + amplitude : 50 - amplitude;
+      d += `Q${x},${y - 20} 50,${y} `;
+    }
+    zigzagPath.setAttribute('d', d.trim());
+  });
+
+  // Optional: reset on mouse leave
+  scrollPathContainer.addEventListener('mouseleave', () => {
+    scrollDot.style.top = `0px`;
+    // Reset to default zigzag
+    zigzagPath.setAttribute('d', 'M50,0 Q80,40 50,80 Q20,120 50,160 Q80,200 50,240 Q20,280 50,320 Q80,360 50,400 Q20,440 50,480 Q80,520 50,560 Q20,600 50,640 Q80,680 50,720 Q20,760 50,800 Q80,840 50,880 Q20,920 50,960 Q80,980 50,1000');
+  });
+}

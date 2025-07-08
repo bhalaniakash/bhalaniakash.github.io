@@ -4,11 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Akash Bhalani - Full Stack Developer Portfolio</title>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4f46e5',
+            secondary: '#7c3aed',
+            dark: '#0f172a',
+            light: '#1e293b'
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'zigzag': 'zigzag 20s linear infinite',
+            'fadeInUp': 'fadeInUp 1s ease forwards',
+            'fadeInDown': 'fadeInDown 1s ease forwards',
+            'fadeInLeft': 'fadeInLeft 1s ease forwards',
+            'fadeInRight': 'fadeInRight 1s ease forwards',
+            'fadeIn': 'fadeIn 1s ease forwards',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' }
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            fadeInDown: {
+              '0%': { opacity: '0', transform: 'translateY(-30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            fadeInLeft: {
+              '0%': { opacity: '0', transform: 'translateX(-30px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' }
+            },
+            fadeInRight: {
+              '0%': { opacity: '0', transform: 'translateX(30px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' }
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            zigzag: {
+              '0%': { transform: 'translateX(0)' },
+              '25%': { transform: 'translateX(10px)' },
+              '50%': { transform: 'translateX(0)' },
+              '75%': { transform: 'translateX(-10px)' },
+              '100%': { transform: 'translateX(0)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- External Libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-scroll-container>
@@ -17,77 +83,220 @@
     <div class="loader-spinner"></div>
   </div>
 
-  <header>
-    <nav>
-      <h1>Akash Bhalani</h1>
-      <div class="hamburger" id="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/5 backdrop-blur-xl border-b border-white/10 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center h-20 w-full">
+        <!-- Logo/Name Section - Left Side -->
+        <div class="flex items-center flex-shrink-0">
+          <h1 class="text-2xl lg:text-3xl font-bold text-white hover:text-primary transition-all duration-300 cursor-pointer tracking-wide">
+            Akash Bhalani
+          </h1>
+        </div>
+
+        <!-- Spacer to push content to edges -->
+        <div class="flex-1"></div>
+
+        <!-- Desktop Navigation and Theme Toggle - Right Side -->
+        <div class="hidden lg:flex items-center space-x-8">
+          <ul class="flex items-center space-x-8">
+            <li><a href="#about" class="nav-link relative text-dark dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-300 group">
+              About
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+            </a></li>
+            <li><a href="#skills" class="nav-link relative text-dark dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-300 group">
+              Skills
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+            </a></li>
+            <li><a href="#projects" class="nav-link relative text-dark dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-300 group">
+              Projects
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+            </a></li>
+            <li><a href="#contact" class="nav-link relative text-dark dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-300 group">
+              Contact
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
+            </a></li>
+            <li>
+              <a href="resume.html" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 group" target="_blank">
+                <i class="fas fa-download mr-2 group-hover:animate-bounce"></i>Resume
+              </a>
+            </li>
+          </ul>
+          
+          <!-- Theme Toggle Button in Navbar -->
+          <button class="theme-toggle w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-white/20" id="theme-toggle">
+            <i class="fas fa-moon text-white text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button and Theme Toggle -->
+        <div class="lg:hidden flex items-center space-x-3">
+          <!-- Mobile Theme Toggle -->
+          <button class="theme-toggle-mobile w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-white/20" id="theme-toggle-mobile">
+            <i class="fas fa-moon text-white text-sm"></i>
+          </button>
+          
+          <!-- Hamburger Menu -->
+          <div class="hamburger relative z-[51] cursor-pointer" id="hamburger">
+            <span class="bar block w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 rounded"></span>
+            <span class="bar block w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 rounded"></span>
+            <span class="bar block w-6 h-0.5 bg-white transition-all duration-300 rounded"></span>
+          </div>
+        </div>
       </div>
-      <ul id="nav-menu">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="resume.html" class="btn btn-secondary" target="_blank">Resume</a></li>
-      </ul>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/20 transform -translate-y-full opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="px-4 py-6 space-y-4">
+          <a href="#about" class="block text-white/80 hover:text-white transition-colors duration-300 py-2">About</a>
+          <a href="#skills" class="block text-white/80 hover:text-white transition-colors duration-300 py-2">Skills</a>
+          <a href="#projects" class="block text-white/80 hover:text-white transition-colors duration-300 py-2">Projects</a>
+          <a href="#contact" class="block text-white/80 hover:text-white transition-colors duration-300 py-2">Contact</a>
+          <a href="resume.html" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 mt-4" target="_blank">
+            <i class="fas fa-download mr-2"></i>Resume
+          </a>
+        </div>
+      </div>
     </nav>
   </header>
 
+  <!-- Enhanced Zigzag Scroll Path with Polls -->
+  <div class="scroll-path-container fixed left-6 top-24 bottom-24 w-3 z-40 hidden lg:block opacity-0">
+    <svg class="scroll-path w-full h-full" viewBox="0 0 100 1000" preserveAspectRatio="none">
+      <!-- Enhanced zigzag path with more curves -->
+      <path d="M50,0 Q80,40 50,80 Q20,120 50,160 Q80,200 50,240 Q20,280 50,320 Q80,360 50,400 Q20,440 50,480 Q80,520 50,560 Q20,600 50,640 Q80,680 50,720 Q20,760 50,800 Q80,840 50,880 Q20,920 50,960 Q80,980 50,1000" 
+            stroke="url(#enhancedPathGradient)" 
+            stroke-width="10" 
+            fill="none" 
+            opacity="0.9"
+            filter="url(#glow)"/>
+      
+      <!-- Gradient definitions -->
+      <defs>
+        <linearGradient id="enhancedPathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+          <stop offset="25%" style="stop-color:#8b5cf6;stop-opacity:0.9" />
+          <stop offset="50%" style="stop-color:#a855f7;stop-opacity:0.8" />
+          <stop offset="75%" style="stop-color:#d946ef;stop-opacity:0.7" />
+          <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.6" />
+        </linearGradient>
+        
+        <!-- Glow effect -->
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge> 
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        
+        <!-- Animated gradient for the dot -->
+        <radialGradient id="dotGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#6366f1;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.6" />
+        </radialGradient>
+      </defs>
+    </svg>
+    
+    <!-- Enhanced scroll dot with better styling -->
+    <div class="scroll-dot absolute w-6 h-6 rounded-full border-2 border-white shadow-xl transform -translate-x-1/2 bg-gradient-to-r from-indigo-500 to-purple-600" 
+         style="left: 50%; top: 0;">
+    </div>
+  </div>
+
   <main>
 
-  <section id="hero">
-    <div id="particles-js"></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-greeting">
-          <span class="wave">👋</span>
-          <h2>Hi, I'm <span class="highlight">Akash Bhalani</span></h2>
+  <section id="hero" class="min-h-screen relative flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-gray-900 via-blue-700 to-purple-900 mt-20" data-parallax="0.5">
+    <!-- Enhanced Particles Background -->
+    <div id="particles-js" class="absolute inset-0 opacity-70"></div>
+ 
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
+      <div class="text-center lg:text-left order-2 lg:order-1 space-y-6">
+        <div class="hero-greeting mb-6">
+          <span class="wave text-4xl sm:text-5xl inline-block">👋</span>
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mt-4">
+            Hi, I'm <span class="bg-gradient-to-r from-primary via-secondary to-pink-500 bg-clip-text text-transparent">Akash Bhalani</span>
+          </h2>
         </div>
-        <p class="subtitle">Full Stack Web Developer</p>
-        <p class="description">I build <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
-        <div class="cta-buttons">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        
+        <p class="text-xl sm:text-2xl lg:text-3xl text-blue-400 font-semibold mb-6">
+          Full Stack Web Developer
+        </p>
+        
+        <p class="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-8">
+          I build <span class="typed-text text-primary font-semibold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"></span><span class="cursor text-white">&nbsp;</span>
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 mb-8 justify-center lg:justify-start">
+          <a href="#projects" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 text-lg">
+            <span class="group-hover:translate-x-1 transition-transform">View My Work</span>
+            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+          </a>
+          <a href="#contact" class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-xl border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 text-lg">
+            <i class="fas fa-envelope mr-3"></i>Contact Me
+          </a>
         </div>
-        <div class="social-links">
-          <a href="https://github.com/bhalaniakash" target="_blank" class="social-link">
-            <i class="fab fa-github"></i>
-            <span class="tooltip">GitHub</span>
+        
+        <div class="flex justify-center lg:justify-start space-x-6">
+          <a href="mailto:akashbhalani21@gmail.com" target="_blank" class="social-link group relative">
+            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center hover:from-red-400 hover:to-pink-400 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <i class="fas fa-envelope text-xl text-white"></i>
+            </div>
+            <span class="tooltip absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Email</span>
           </a>
-          <a href="https://www.linkedin.com/in/akash-bhalani/" target="_blank" class="social-link">
-            <i class="fab fa-linkedin"></i>
-            <span class="tooltip">LinkedIn</span>
+          <a href="https://instagram.com/akashsoni_30" target="_blank" class="social-link group relative">
+            <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-yellow-400 rounded-full flex items-center justify-center hover:from-pink-400 hover:to-yellow-300 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <i class="fab fa-instagram text-xl text-white"></i>
+            </div>
+            <span class="tooltip absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Instagram</span>
           </a>
-          <a href="https://x.com/Akashsoni_30" target="_blank" class="social-link">
-            <i class="fab fa-twitter"></i>
-            <span class="tooltip">Twitter</span>
+          <a href="https://github.com/bhalaniakash" target="_blank" class="social-link group relative">
+            <div class="w-12 h-12 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full flex items-center justify-center hover:from-gray-600 hover:to-gray-700 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <i class="fab fa-github text-xl text-white"></i>
+            </div>
+            <span class="tooltip absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/akash-bhalani/" target="_blank" class="social-link group relative">
+            <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center hover:from-blue-500 hover:to-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <i class="fab fa-linkedin text-xl text-white"></i>
+            </div>
+            <span class="tooltip absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">LinkedIn</span>
+          </a>
+          <a href="https://x.com/Akashsoni_30" target="_blank" class="social-link group relative">
+            <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full flex items-center justify-center hover:from-blue-300 hover:to-blue-400 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+              <i class="fab fa-twitter text-xl text-white"></i>
+            </div>
+            <span class="tooltip absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Twitter</span>
           </a>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="image-wrapper">
-          <div class="image-border"></div>
-          <img src="img/akash.jpg" alt="Akash Bhalani">
-          <div class="image-overlay">
-            <div class="overlay-content">
-              <span>Full Stack Developer</span>
-              <span>Laravel Specialist</span>
-              <span>Problem Solver</span>
-            </div>
+      
+      <div class="order-1 lg:order-2 flex justify-center">
+        <div class="relative group">
+          <!-- REMOVE: Animated ring around image -->
+          <div class="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-pink-500 rounded-full animate-spin-slow opacity-75 group-hover:opacity-10 transition-opacity duration-300"></div>
+          <!-- Main image container: remove border and backdrop-blur, keep only round image -->
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden">
+            <img src="img/akash.jpg" alt="Akash Bhalani" class="w-full h-full object-cover">
+            <!-- REMOVE: Overlay and floating badges -->
+            <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+              <div class="text-white text-center">
+                <p class="font-semibold">Full Stack Developer</p>
+                <p class="text-sm">Laravel • React • PHP</p>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <div class="mouse">
-        <div class="wheel"></div>
-      </div>
-      <div class="arrow">
-        <span></span>
-        <span></span>
-        <span></span>
+    
+    <!-- Enhanced scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce opacity-0 animate-fadeIn" style="animation-delay: 1.5s; animation-fill-mode: forwards;">
+      <div class="relative">
+        <div class="w-6 h-10 border-2 border-white/50 rounded-full relative cursor-pointer hover:border-white/80 transition-colors duration-300 group">
+          <div class="w-1 h-3 bg-white rounded-full absolute top-2 left-1/2 transform -translate-x-1/2 animate-pulse group-hover:bg-primary transition-colors duration-300"></div>
+        </div>
+        <p class="text-white/70 text-xs mt-2 text-center">Scroll Down</p>
       </div>
     </div>
   </section>
@@ -123,170 +332,235 @@
     </div>
   </section>
 
-  <section id="personal-details">
-    <h2 class="section-title">Personal Details</h2>
-    <div class="details-grid">
-      <div class="detail-item" data-aos="fade-up">
-        <i class="fas fa-user"></i>
-        <span>Name</span>
-        <p>Akash Bhalani</p>
-      </div>
-      <div class="detail-item" data-aos="fade-up" data-aos-delay="100">
-        <i class="fas fa-birthday-cake"></i>
-        <span>Age</span>
-        <p>22 Years</p>
-      </div>
-      <div class="detail-item" data-aos="fade-up" data-aos-delay="200">
-        <i class="fas fa-phone"></i>
-        <span>Phone</span>
-        <p>+91 8980202753</p>
-      </div>
-      <div class="detail-item" data-aos="fade-up" data-aos-delay="300">
-        <i class="fas fa-envelope"></i>
-        <span>Email</span>
-        <p>akashbhalani21@gmail.com</p>
-      </div>
-      <div class="detail-item" data-aos="fade-up" data-aos-delay="400">
-        <i class="fas fa-calendar"></i>
-        <span>Date of Birth</span>
-        <p>30 April 2003</p>
-      </div>
-      <div class="detail-item" data-aos="fade-up" data-aos-delay="500">
-        <i class="fas fa-graduation-cap"></i>
-        <span>Degree</span>
-        <p>MCA</p>
+  <section id="personal-details" class="py-16 lg:py-24 bg-gradient-to-br from-gray-900 to-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Personal Details</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+        <div class="glass-card p-6 text-center hover:scale-105 transition-all duration-300" data-aos="fade-up">
+          <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-user text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-400 mb-2">Name</h3>
+          <p class="text-xl font-bold text-white">Akash Bhalani</p>
+        </div>
+        
+        <div class="glass-card p-6 text-center hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-birthday-cake text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-400 mb-2">Age</h3>
+          <p class="text-xl font-bold text-white">22 Years</p>
+        </div>
+        
+        <div class="glass-card p-6 text-center hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-phone text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-400 mb-2">Phone</h3>
+          <p class="text-xl font-bold text-white">+91 8980202753</p>
+        </div>
+        
+        <div class="glass-card p-6 text-center hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-envelope text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-400 mb-2">Email</h3>
+          <p class="text-lg font-bold text-white break-all">akashbhalani21@gmail.com</p>
+        </div>
+        
+        <div class="glass-card p-6 text-center hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+          <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-calendar text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-400 mb-2">Date of Birth</h3>
+          <p class="text-xl font-bold text-white">30 April 2003</p>
+        </div>
+        
+        <div class="glass-card p-6 text-center hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="500">
+          <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-graduation-cap text-2xl text-white"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-400 mb-2">Degree</h3>
+          <p class="text-xl font-bold text-white">MCA</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="skills">
-    <h2 class="section-title">My Skills</h2>
-    <div class="skills-filter">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="frontend">Frontend</button>
-      <button class="filter-btn" data-filter="backend">Backend</button>
-      <button class="filter-btn" data-filter="database">Database</button>
-      <button class="filter-btn" data-filter="languages">Languages</button>
-    </div>
-    <div class="skills-container">
-      <div class="skill-category" data-category="frontend">
-        <h3>Frontend</h3>
-        <div class="skill-item">
-          <span>HTML/CSS/JavaScript</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="90%"></div>
-          </div>
-          <span class="skill-level-text">Advanced</span>
-        </div>
-        <div class="skill-item">
-          <span>React</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="70%"></div>
-          </div>
-          <span class="skill-level-text">Intermediate</span>
-        </div>
-        <div class="skill-item">
-          <span>Bootstrap</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="90%"></div>
-          </div>
-          <span class="skill-level-text">Advanced</span>
-        </div>
-        <div class="skill-item">
-          <span>jQuery</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="70%"></div>
-          </div>
-          <span class="skill-level-text">Intermediate</span>
-        </div>
+  <section id="skills" class="py-16 lg:py-24 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl lg:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-slate-300 to-slate-400 bg-clip-text text-transparent">My Skills</h2>
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
+        <button class="filter-btn active px-6 py-3 rounded-full bg-slate-600 text-white font-medium transition-all hover:scale-105 border border-slate-500" data-filter="all">All</button>
+        <button class="filter-btn px-6 py-3 rounded-full bg-slate-700/50 text-slate-300 font-medium transition-all hover:bg-slate-600 hover:text-white hover:scale-105 border border-slate-600" data-filter="frontend">Frontend</button>
+        <button class="filter-btn px-6 py-3 rounded-full bg-slate-700/50 text-slate-300 font-medium transition-all hover:bg-slate-600 hover:text-white hover:scale-105 border border-slate-600" data-filter="backend">Backend</button>
+        <button class="filter-btn px-6 py-3 rounded-full bg-slate-700/50 text-slate-300 font-medium transition-all hover:bg-slate-600 hover:text-white hover:scale-105 border border-slate-600" data-filter="database">Database</button>
+        <button class="filter-btn px-6 py-3 rounded-full bg-slate-700/50 text-slate-300 font-medium transition-all hover:bg-slate-600 hover:text-white hover:scale-105 border border-slate-600" data-filter="languages">Languages</button>
       </div>
-      <div class="skill-category" data-category="backend">
-        <h3>Backend</h3>
-        <div class="skill-item">
-          <span>PHP</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="90%"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div class="skill-category glass-card p-6 hover:border-slate-400/50 transition-all duration-300" data-category="frontend">
+          <h3 class="text-2xl font-bold mb-6 text-center text-slate-300">Frontend</h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">HTML/CSS/JavaScript</span>
+                <span class="text-sm text-slate-400 font-semibold">Advanced</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">React</span>
+                <span class="text-sm text-slate-400 font-semibold">Intermediate</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="70%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">Bootstrap</span>
+                <span class="text-sm text-slate-400 font-semibold">Advanced</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">jQuery</span>
+                <span class="text-sm text-slate-400 font-semibold">Intermediate</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="70%"></div>
+              </div>
+            </div>
           </div>
-          <span class="skill-level-text">Advanced</span>
         </div>
-        <div class="skill-item">
-          <span>Laravel</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="80%"></div>
+        
+        <div class="skill-category glass-card p-6 hover:border-slate-400/50 transition-all duration-300" data-category="backend">
+          <h3 class="text-2xl font-bold mb-6 text-center text-slate-300">Backend</h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">PHP</span>
+                <span class="text-sm text-slate-400 font-semibold">Advanced</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">Laravel</span>
+                <span class="text-sm text-slate-400 font-semibold">Advanced</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">Node.js</span>
+                <span class="text-sm text-slate-400 font-semibold">Intermediate</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="70%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">Livewire</span>
+                <span class="text-sm text-slate-400 font-semibold">Intermediate</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="70%"></div>
+              </div>
+            </div>
           </div>
-          <span class="skill-level-text">Advanced</span>
         </div>
-        <div class="skill-item">
-          <span>Node.js</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="70%"></div>
+        
+        <div class="skill-category glass-card p-6 hover:border-slate-400/50 transition-all duration-300" data-category="database">
+          <h3 class="text-2xl font-bold mb-6 text-center text-slate-300">Database</h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">MySQL</span>
+                <span class="text-sm text-slate-400 font-semibold">Advanced</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">MongoDB</span>
+                <span class="text-sm text-slate-400 font-semibold">Intermediate</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="70%"></div>
+              </div>
+            </div>
           </div>
-          <span class="skill-level-text">Intermediate</span>
         </div>
-        <div class="skill-item">
-          <span>Livewire</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="70%"></div>
+        
+        <div class="skill-category glass-card p-6 hover:border-slate-400/50 transition-all duration-300" data-category="languages">
+          <h3 class="text-2xl font-bold mb-6 text-center text-slate-300">Programming Languages</h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">Python</span>
+                <span class="text-sm text-slate-400 font-semibold">Intermediate</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="70%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">C/C++</span>
+                <span class="text-sm text-slate-400 font-semibold">Intermediate</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="70%"></div>
+              </div>
+            </div>
           </div>
-          <span class="skill-level-text">Intermediate</span>
         </div>
-      </div>
-      <div class="skill-category" data-category="database">
-        <h3>Database</h3>
-        <div class="skill-item">
-          <span>MySQL</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="80%"></div>
+        
+        <div class="skill-category glass-card p-6 hover:border-slate-400/50 transition-all duration-300" data-category="tools">
+          <h3 class="text-2xl font-bold mb-6 text-center text-slate-300">Development Tools</h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">Git & GitHub</span>
+                <span class="text-sm text-slate-400 font-semibold">Advanced</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">VS Code</span>
+                <span class="text-sm text-slate-400 font-semibold">Advanced</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-medium text-slate-200">XAMPP</span>
+                <span class="text-sm text-slate-400 font-semibold">Advanced</span>
+              </div>
+              <div class="skill-bar bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                <div class="skill-level h-full rounded-full" data-level="90%"></div>
+              </div>
+            </div>
           </div>
-          <span class="skill-level-text">Advanced</span>
-        </div>
-        <div class="skill-item">
-          <span>MongoDB</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="70%"></div>
-          </div>
-          <span class="skill-level-text">Intermediate</span>
-        </div>
-      </div>
-      <div class="skill-category" data-category="languages">
-        <h3>Programming Languages</h3>
-        <div class="skill-item">
-          <span>Python</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="70%"></div>
-          </div>
-          <span class="skill-level-text">Intermediate</span>
-        </div>
-        <div class="skill-item">
-          <span>C/C++</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="70%"></div>
-          </div>
-          <span class="skill-level-text">Intermediate</span>
-        </div>
-      </div>
-      <div class="skill-category" data-category="tools">
-        <h3>Development Tools</h3>
-        <div class="skill-item">
-          <span>Git & GitHub</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="90%"></div>
-          </div>
-          <span class="skill-level-text">Advanced</span>
-        </div>
-        <div class="skill-item">
-          <span>VS Code</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="90%"></div>
-          </div>
-          <span class="skill-level-text">Advanced</span>
-        </div>
-        <div class="skill-item">
-          <span>XAMPP</span>
-          <div class="skill-bar">
-            <div class="skill-level" data-level="90%"></div>
-          </div>
-          <span class="skill-level-text">Advanced</span>
         </div>
       </div>
     </div>
@@ -447,17 +721,19 @@
 
   </main>
 
-  <footer>
-    <div class="footer-content">
-      <p>© 2025 Akash Bhalani. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+  <footer class="bg-gray-900 border-t border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Akash Bhalani. All rights reserved.</p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-sm">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>

@@ -6,6 +6,69 @@
     <title>Akash Bhalani - Full Stack Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+   
+    <!-- Ensure tsParticles container is present and styled -->
+    <style>
+    #tsparticles {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    </style>
+    <div id="tsparticles"></div>
+    <!-- Add tsParticles CDN before your main script -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+   
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      tsParticles.load('tsparticles', {
+        particles: {
+          number: { value: 100, density: { enable: true, value_area: 1000 } },
+          color: { value: "#aa48ec" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5, random: false },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#aa48ec",
+            opacity: 1,
+            width: 0.8
+          },
+          move: {
+            enable: true,
+            speed: 8,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "grab" },
+            onclick: { enable: true, mode: "push" },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 140, line_linked: { opacity: 1 } },
+            bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+            repulse: { distance: 200, duration: 0.4 },
+            push: { particles_nb: 4 },
+            remove: { particles_nb: 2 }
+          }
+        },
+        retina_detect: true
+      });
+    });
+    </script>
+    
     <style>
         :root {
             --primary-color: #3a86ff;
@@ -245,14 +308,14 @@
         .skill-category {
             margin-bottom: 15px;
         }
-
+        
         .skill-category-title {
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--dark-color);
         }
-
+        
         .skill-tag {
             display: inline-block;
             background-color: #f1f3f5;
@@ -269,13 +332,13 @@
             color: white;
             transform: translateY(-2px);
         }
-
+        
         .project-links {
             display: flex;
             gap: 10px;
             margin-top: 10px;
         }
-
+        
         .project-link {
             display: inline-flex;
             align-items: center;
@@ -287,12 +350,12 @@
             background-color: rgba(58, 134, 255, 0.1);
             transition: var(--transition);
         }
-
+        
         .project-link i {
             margin-right: 5px;
             font-size: 0.7rem;
         }
-
+        
         .project-link:hover {
             background-color: rgba(58, 134, 255, 0.2);
             transform: translateY(-2px);
@@ -314,7 +377,7 @@
             font-size: 0.9rem;
             color: var(--gray-color);
         }
-
+        
         .languages-list, .hobbies-list {
             list-style-type: none;
         }
@@ -326,13 +389,13 @@
             font-size: 0.9rem;
             color: var(--gray-color);
         }
-
+        
         .languages-list li i, .hobbies-list li i {
             margin-right: 8px;
             color: var(--primary-color);
             font-size: 0.8rem;
         }
-
+        
         .progress-container {
             width: 100%;
             background-color: #f1f3f5;
@@ -341,19 +404,19 @@
             height: 6px;
             overflow: hidden;
         }
-
+        
         .progress-bar {
             height: 100%;
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             border-radius: 20px;
         }
-
+        
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
+        
         .section {
             animation: fadeIn 0.6s ease forwards;
         }
@@ -363,7 +426,7 @@
         .section:nth-child(3) { animation-delay: 0.3s; }
         .section:nth-child(4) { animation-delay: 0.4s; }
         .section:nth-child(5) { animation-delay: 0.5s; }
-
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .resume-body {
@@ -402,7 +465,7 @@
                 padding: 20px;
             }
         }
-
+        
         @media (max-width: 576px) {
             .item-header {
                 flex-direction: column;
@@ -436,7 +499,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             transition: var(--transition);
         }
-
+        
         .theme-toggle:hover {
             transform: scale(1.1);
         }
@@ -445,11 +508,11 @@
             background-color: #121212;
             color: #e0e0e0;
         }
-
+        
         body.dark-mode .resume {
             background-color: #1e1e1e;
         }
-
+        
         body.dark-mode .section {
             background-color: #2d2d2d;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -469,16 +532,16 @@
         body.dark-mode .hobbies-list li {
             color: #b0b0b0;
         }
-
+        
         body.dark-mode .skill-tag {
             background-color: #3a3a3a;
             color: #e0e0e0;
         }
-
+        
         body.dark-mode .progress-container {
             background-color: #3a3a3a;
         }
-
+        
         /* Print styles */
         @media print {
             body {
@@ -507,9 +570,10 @@
     </div>
 
     <div class="container">
+        <div id="tsparticles"></div>
         <div class="resume">
             <div class="header">
-                <img src="https://ui-avatars.com/api/?name=Akash+Bhalani&size=200&background=random" alt="Akash Bhalani" class="profile-img">
+                <img src="img/akash.jpg" alt="Akash Bhalani" class="profile-img">
                 <h1 class="name">Akash Bhalani</h1>
                 <p class="title">Full Stack Web Developer</p>
                 <div class="contact-info">
